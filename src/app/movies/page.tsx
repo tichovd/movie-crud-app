@@ -76,22 +76,12 @@ export default function MoviesPage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center px-24 py-6">
-      <div className="w-full flex flex-col items-center mt-8 mb-8">
-        <h1 className="text-3xl font-bold mb-4">Movies</h1>
-        <button
-          onClick={() => setShowModal(true)}
-          className="bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-700 transition-colors"
-        >
-          Add new movie
-        </button>
-      </div>
-
+      <h1 className="text-3xl font-bold mb-4">Movies</h1>
       {error && (
         <div className="mb-4 text-red-600 bg-red-100 border border-red-300 px-4 py-2 rounded">
           {error}
         </div>
       )}
-
       {showModal && (
         <div className="fixed inset-0 bg-white/20 backdrop-blur-xs flex items-center justify-center z-50">
           <div className="bg-white rounded shadow-lg p-6 relative w-full max-w-md">
@@ -119,9 +109,10 @@ export default function MoviesPage() {
       <MovieList
         movies={movies}
         loading={loading}
-        onDelete={handleDelete}
         deletingId={deletingId}
+        onDelete={handleDelete}
         onEdit={handleEdit}
+        onAdd={() => setShowModal(true)}
       />
     </main>
   );

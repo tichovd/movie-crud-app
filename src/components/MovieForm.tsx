@@ -1,14 +1,21 @@
 "use client";
 import { useState } from "react";
+import DropDown from "./DropDown";
+import { AGE_LIMITS } from "../data/data";
 import { addMovie, editMovie } from "../utils/api";
 import type { Movie } from "../types";
 
 type MovieFormProps = {
   onSuccess?: () => void;
   movie?: Movie | null;
+  titleMaxLength?: number;
 };
 
-export default function MovieForm({ onSuccess, movie }: MovieFormProps) {
+export default function MovieForm({
+  onSuccess,
+  movie,
+  titleMaxLength = 40,
+}: MovieFormProps) {
   const [form, setForm] = useState<Movie>(
     movie
       ? {
@@ -83,6 +90,7 @@ export default function MovieForm({ onSuccess, movie }: MovieFormProps) {
           value={form.title}
           onChange={handleChange}
           required
+          maxLength={titleMaxLength}
           className="mt-1 p-2 border rounded w-full text-black"
         />
       </label>
@@ -99,15 +107,17 @@ export default function MovieForm({ onSuccess, movie }: MovieFormProps) {
       </label>
       <label className="font-medium">
         Age limit
-        <input
-          type="number"
-          name="ageLimit"
+        <DropDown
+          options={AGE_LIMITS}
           value={form.ageLimit}
-          onChange={handleChange}
-          min={0}
-          max={21}
-          required
-          className="mt-1 p-2 border rounded w-full text-black"
+          onChange={(val) => {
+            if (typeof val === "number") {
+              setForm((prev) => ({ ...prev, ageLimit: val }));
+            }
+          }}
+          display={(option) => (option === "" ? "All" : `${option}+`)}
+          className="mt-1 w-full"
+          disableAllOption
         />
       </label>
       <button
