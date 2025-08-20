@@ -38,7 +38,8 @@ This app uses the https://crudcrud.com API for all CRUD operations (Create, Read
 You can configure your own endpoint in `src/data/data.ts`.
 
 ## Technologies Used
-
+- Node.js 24.6.0
+- npm 11.5.2
 - Next.js
 - React
 - TypeScript
