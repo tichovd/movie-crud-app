@@ -24,7 +24,7 @@ export default function MovieForm({
           ageLimit: movie.ageLimit,
           _id: movie._id,
         }
-      : { title: "", description: "", ageLimit: 12 }
+      : { _id: "", title: "", description: "", ageLimit: 12 }
   );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -53,7 +53,7 @@ export default function MovieForm({
           description: form.description,
           ageLimit: form.ageLimit,
         });
-        setForm({ title: "", description: "", ageLimit: 12 });
+        setForm({ _id: "", title: "", description: "", ageLimit: 12 });
       }
       if (onSuccess) onSuccess();
     } catch (err) {
