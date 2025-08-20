@@ -11,8 +11,8 @@ export default function MoviesPage() {
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [editMovie, setEditMovie] = useState<Movie | null>(null);
-  const [deletingId, setDeletingId] = useState<number | null>(null);
-  const [confirmDeleteId, setConfirmDeleteId] = useState<number | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   /**
@@ -49,7 +49,7 @@ export default function MoviesPage() {
     setShowModal(true);
   }
 
-  function handleDelete(id: number) {
+  function handleDelete(id: string) {
     setConfirmDeleteId(id);
   }
 

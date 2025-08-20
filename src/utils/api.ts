@@ -33,7 +33,7 @@ export async function editMovie(
   return res;
 }
 
-export async function deleteMovie(id: number) {
+export async function deleteMovie(id: string) {
   const res = await fetch(`${MOVIES_API_URL}/${id}`, {
     method: "DELETE",
   });
